@@ -13,6 +13,11 @@ class RecipesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            shimmerRecyclerView.showShimmer()
+        }
+
         return binding.root
     }
 

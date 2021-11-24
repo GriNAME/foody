@@ -12,18 +12,17 @@ import com.griname.foody.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.recipesFragment,
@@ -33,10 +32,5 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 }

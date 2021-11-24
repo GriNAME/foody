@@ -8,14 +8,22 @@
     tools:context=".ui.fragment.recipes.RecipesFragment"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipeRecyclerView"
+    <com.todkars.shimmer.ShimmerRecyclerView
+        android:id="@+id/shimmer_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shimmer_recycler_item_count="4"
+        android:layout_marginStart="@dimen/app_margin_small"
+        android:layout_marginEnd="@dimen/app_margin_small"
+        tools:listitem="@layout/row_recipes_layout"
+        app:shimmer_recycler_layout="@layout/row_placeholder_layout"
+        tools:ignore="SpeakableTextPresentCheck"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
