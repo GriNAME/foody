@@ -12,7 +12,7 @@
         android:title="@string/favorite" />
 
     <item
-        android:id="@id/recipesFragment"
+        android:id="@id/foodJokeFragment"
         android:icon="@drawable/ic_food_joke"
         android:title="@string/food_joke" />
 </menu>
