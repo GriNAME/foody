@@ -13,6 +13,7 @@ import com.griname.foody.adapter.RecipesAdapter
 import com.griname.foody.databinding.FragmentRecipesBinding
 import com.griname.foody.util.Constant.Companion.API_KEY
 import com.griname.foody.util.NetworkResult
+import com.griname.foody.viewmodel.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,8 @@ class RecipesFragment : Fragment() {
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
     private val recipesAdapter by lazy { RecipesAdapter() }
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel by viewModels<MainViewModel>()
+    private val recipesViewModel by viewModels<RecipesViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
@@ -40,7 +42,7 @@ class RecipesFragment : Fragment() {
 
     private fun requestApiData() {
         showShimmerEffect()
-        mainViewModel.getRecipes(applyQueries())
+        mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipeResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResult.Success -> {
@@ -55,19 +57,6 @@ class RecipesFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun applyQueries(): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()
-
-        queries["number"] = "50"
-        queries["apiKey"] = API_KEY
-        queries["type"] = "snack"
-        queries["diet"] = "vegan"
-        queries["addRecipeInformation"] = "true"
-        queries["fillIngredients"] = "true"
-
-        return queries
     }
 
     private fun showShimmerEffect() {

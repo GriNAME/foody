@@ -1,4 +1,4 @@
-package com.griname.foody.repository
+package com.griname.foody.data
 
 import com.griname.foody.data.RemoteDataSource
 import dagger.hilt.android.scopes.ViewModelScoped
