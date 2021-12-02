@@ -12,7 +12,7 @@ import com.griname.foody.model.FoodRecipe
 import com.griname.foody.model.Result
 import com.griname.foody.util.RecipesDiffUtil
 
-class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
+class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
     private var recipes = emptyList<Result>()
 

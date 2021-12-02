@@ -54,4 +54,18 @@
         app:layout_constraintTop_toBottomOf="@id/error_image"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/recipes_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/filter"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_restaurant"
+        app:tint="@color/white"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

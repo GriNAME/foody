@@ -17,5 +17,17 @@ class Constant {
         // ROOM
         const val DATABASE_NAME = "recipe_database"
         const val RECIPE_TABLE = "recipe_table"
+
+        // Bottom Sheet and Preferences
+        const val DEFAULT_RECIPE_NUMBER = "50"
+        const val DEFAULT_MEAL_TYPE = "main course"
+        const val DEFAULT_DIET_TYPE = "gluten free"
+        const val DEFAULT_TYPE_ID = 0
+
+        const val PREFERENCES_NAME = "data_store_name"
+        const val PREFERENCES_MEAL_TYPE = "meal_type"
+        const val PREFERENCES_MEAL_TYPE_ID = "meal_type_id"
+        const val PREFERENCES_DIET_TYPE = "diet_type"
+        const val PREFERENCES_DIET_TYPE_ID = "diet_type_id"
     }
 }

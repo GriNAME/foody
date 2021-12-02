@@ -19,5 +19,22 @@
         android:id="@+id/recipesFragment"
         android:name="com.griname.foody.ui.fragment.recipes.RecipesFragment"
         android:label="Recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeBottomSheet"
+            app:destination="@id/recipeBottomSheet" />
+        <argument
+            android:name="backFromBottomShit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <dialog
+        android:id="@+id/recipeBottomSheet"
+        android:name="com.griname.foody.ui.fragment.recipes.RecipeBottomSheet"
+        android:label="Filter"
+        tools:layout="@layout/recipe_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipeBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </dialog>
 </navigation>
