@@ -19,10 +19,12 @@ import com.griname.foody.R
 import com.griname.foody.viewmodel.MainViewModel
 import com.griname.foody.adapter.RecipeAdapter
 import com.griname.foody.databinding.FragmentRecipesBinding
+import com.griname.foody.util.NetworkListener
 import com.griname.foody.util.NetworkResult
 import com.griname.foody.util.observeOnce
 import com.griname.foody.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,6 +37,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private val recipesViewModel by viewModels<RecipeViewModel>()
     private val mediatorLiveData = MediatorLiveData<Boolean>()
 
+    private val networkListener by lazy { NetworkListener() }
     private val recipesAdapter by lazy { RecipeAdapter() }
     private val args by navArgs<RecipesFragmentArgs>()
 
@@ -47,10 +50,26 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
 
         initRecyclerView()
         checkingChangeListData()
-        readDatabase()
+
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
+            recipesViewModel.backOnline = it
+        }
+
+        lifecycleScope.launch {
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d(TAG, "RecipesFragment: Internet Connection is $status")
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
+        }
 
         binding.recipesFab.setOnClickListener {
-            findNavController().navigate(R.id.action_recipesFragment_to_recipeBottomSheet)
+            if (recipesViewModel.networkStatus)
+                findNavController().navigate(R.id.action_recipesFragment_to_recipeBottomSheet)
+            else
+                recipesViewModel.showNetworkStatus()
         }
     }
 
@@ -118,6 +137,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                     response.data!!.let { recipesAdapter.setData(it) }
                 }
                 is NetworkResult.Error -> {
+                    hideShimmerEffect()
                     loadDataFromCache()
                     Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
                 }
