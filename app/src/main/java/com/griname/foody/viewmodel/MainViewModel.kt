@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
+import com.griname.foody.R
 import com.griname.foody.model.FoodRecipe
 import com.griname.foody.data.Repository
 import com.griname.foody.data.database.RecipeEntity
@@ -22,6 +23,8 @@ class MainViewModel @Inject constructor(
     private val repository: Repository
 ) : AndroidViewModel(application) {
 
+    val context = application
+
     /** ROOM DATABASE */
     val readRecipes: LiveData<List<RecipeEntity>> = repository.localDataSource.readRecipes().asLiveData()
 
@@ -30,14 +33,21 @@ class MainViewModel @Inject constructor(
     }
 
     /** RETROFIT */
-    var recipeResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    var recipeResponse = MutableLiveData<NetworkResult<FoodRecipe>>()
+    var searchRecipesResponse = MutableLiveData<NetworkResult<FoodRecipe>>()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeColl(queries)
     }
 
+    fun searchRecipes(searchQueries: Map<String, String>) = viewModelScope.launch {
+        searchRecipesSafeCall(searchQueries)
+    }
+
     private suspend fun getRecipesSafeColl(queries: Map<String, String>) {
+
         recipeResponse.value = NetworkResult.Loading()
+
         if (hasInternetConnection()) {
             try {
                 val response = repository.remoteDataSource.getRecipes(queries)
@@ -47,10 +57,26 @@ class MainViewModel @Inject constructor(
                 if (foodRecipe != null)
                     offlineCacheRecipe(foodRecipe)
             } catch (e: Exception) {
-                recipeResponse.value = NetworkResult.Error("Recipe not found")
+                recipeResponse.value = NetworkResult.Error(context.getString(R.string.recipe_not_found))
             }
         } else {
-            recipeResponse.value = NetworkResult.Error("No internet connection")
+            recipeResponse.value = NetworkResult.Error(context.getString(R.string.no_internet_connection))
+        }
+    }
+
+    private suspend fun searchRecipesSafeCall(searchQueries: Map<String, String>) {
+
+        searchRecipesResponse.value = NetworkResult.Loading()
+
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remoteDataSource.searchRecipes(searchQueries)
+                searchRecipesResponse.value = handleFoodRecipesResponse(response)
+            } catch (e: Exception) {
+                searchRecipesResponse.value = NetworkResult.Error(context.getString(R.string.recipe_not_found))
+            }
+        } else {
+            searchRecipesResponse.value = NetworkResult.Error(context.getString(R.string.no_internet_connection))
         }
     }
 
@@ -66,10 +92,10 @@ class MainViewModel @Inject constructor(
                 NetworkResult.Error("Timeout")
             }
             response.code() == 402 -> {
-                NetworkResult.Error("API key limited")
+                NetworkResult.Error(context.getString(R.string.api_key_limited))
             }
             response.body()?.results.isNullOrEmpty() -> {
-                NetworkResult.Error("Response is not found")
+                NetworkResult.Error(context.getString(R.string.response_is_not_found))
             }
             response.isSuccessful -> {
                 NetworkResult.Success(response.body()!!)
@@ -79,7 +105,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<Application>().getSystemService(
+        val connectivityManager = context.getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager
         val activityNetwork = connectivityManager.activeNetwork ?: return false

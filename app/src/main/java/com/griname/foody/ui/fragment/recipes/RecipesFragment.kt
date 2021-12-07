@@ -2,10 +2,9 @@ package com.griname.foody.ui.fragment.recipes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
@@ -16,19 +15,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.CreateMethod
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.griname.foody.R
-import com.griname.foody.viewmodel.MainViewModel
 import com.griname.foody.adapter.RecipeAdapter
 import com.griname.foody.databinding.FragmentRecipesBinding
 import com.griname.foody.util.NetworkListener
 import com.griname.foody.util.NetworkResult
 import com.griname.foody.util.observeOnce
+import com.griname.foody.viewmodel.MainViewModel
 import com.griname.foody.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment(R.layout.fragment_recipes) {
+class RecipesFragment : Fragment(R.layout.fragment_recipes), SearchView.OnQueryTextListener {
 
     private val TAG = "RecipesFragment"
     private val binding by viewBinding<FragmentRecipesBinding>(CreateMethod.INFLATE)
@@ -42,6 +41,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private val args by navArgs<RecipesFragmentArgs>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -71,6 +71,27 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
             else
                 recipesViewModel.showNetworkStatus()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.recipe_menu, menu)
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchApiData(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(p0: String?): Boolean {
+        return true
     }
 
     private fun checkingChangeListData() {
@@ -114,7 +135,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty() && !args.backFromBottomShit) {
-                    Log.d(TAG, "readDatabase: Local Data Showed")
+//                    Log.d(TAG, "readDatabase: Local Data Showed")
                     recipesAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -126,7 +147,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
 
     private fun requestApiData() {
 
-        Log.d(TAG, "requestApiData: Remote Data Showed")
+//        Log.d(TAG, "requestApiData: Remote Data Showed")
         showShimmerEffect()
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
 
@@ -143,7 +164,27 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 }
                 is NetworkResult.Loading -> {
                     showShimmerEffect()
-                    Toast.makeText(requireContext(), "Loading..", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun searchApiData(searchQuery: String) {
+        showShimmerEffect()
+        mainViewModel.searchRecipes(recipesViewModel.applySearchQueries(searchQuery))
+        mainViewModel.searchRecipesResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    response.data?.let { recipesAdapter.setData(it) }
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    loadDataFromCache()
+                    Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
                 }
             }
         }

@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.griname.foody.R
 import com.griname.foody.data.DataStoreRepository
 import com.griname.foody.util.Constant.Companion.API_KEY
 import com.griname.foody.util.Constant.Companion.DEFAULT_DIET_TYPE
@@ -16,6 +17,7 @@ import com.griname.foody.util.Constant.Companion.QUERY_API_KEY
 import com.griname.foody.util.Constant.Companion.QUERY_DIET
 import com.griname.foody.util.Constant.Companion.QUERY_FILL_INGREDIENTS
 import com.griname.foody.util.Constant.Companion.QUERY_NUMBER
+import com.griname.foody.util.Constant.Companion.QUERY_SEARCH
 import com.griname.foody.util.Constant.Companion.QUERY_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +30,8 @@ class RecipeViewModel @Inject constructor(
     application: Application,
     private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
+
+    private val context = application
 
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
@@ -69,9 +73,23 @@ class RecipeViewModel @Inject constructor(
         return queries
     }
 
+    fun applySearchQueries(searchQuery: String): HashMap<String, String> {
+
+        val queries = HashMap<String, String>()
+
+        queries[QUERY_SEARCH] = searchQuery
+        queries[QUERY_NUMBER] = DEFAULT_RECIPE_NUMBER
+        queries[QUERY_API_KEY] = API_KEY
+        queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
+        queries[QUERY_FILL_INGREDIENTS] = "true"
+
+        return queries
+    }
+
     fun showNetworkStatus() {
+
         if (!networkStatus) {
-            Toast.makeText(getApplication(), "No internet connection", Toast.LENGTH_SHORT).show()
+            Toast.makeText(getApplication(), context.getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show()
             saveBackOnline(true)
         } else {
             if (backOnline) {
