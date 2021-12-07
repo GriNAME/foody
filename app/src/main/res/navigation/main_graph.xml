@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.griname.foody.ui.fragment.favorite.FavoriteRecipesFragment"
+        android:name="com.griname.foody.ui.main.fragment.favorite.FavoriteRecipesFragment"
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="com.griname.foody.ui.fragment.foodjoke.FoodJokeFragment"
+        android:name="com.griname.foody.ui.main.fragment.foodjoke.FoodJokeFragment"
         android:label="Food Joke"
         tools:layout="@layout/fragment_food_joke" />
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.griname.foody.ui.fragment.recipes.RecipesFragment"
+        android:name="com.griname.foody.ui.main.fragment.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <dialog
         android:id="@+id/recipeBottomSheet"
-        android:name="com.griname.foody.ui.fragment.recipes.RecipeBottomSheet"
+        android:name="com.griname.foody.ui.main.fragment.recipes.RecipeBottomSheet"
         android:label="Filter"
         tools:layout="@layout/recipe_bottom_sheet" >
         <action

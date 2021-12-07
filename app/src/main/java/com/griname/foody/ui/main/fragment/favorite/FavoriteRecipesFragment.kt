@@ -1,4 +1,4 @@
-package com.griname.foody.ui.fragment.favorite
+package com.griname.foody.ui.main.fragment.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater

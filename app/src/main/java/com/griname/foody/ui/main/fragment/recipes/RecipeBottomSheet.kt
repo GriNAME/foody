@@ -1,4 +1,4 @@
-package com.griname.foody.ui.fragment.recipes
+package com.griname.foody.ui.main.fragment.recipes
 
 import android.os.Bundle
 import android.util.Log

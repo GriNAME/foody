@@ -1,4 +1,4 @@
-package com.griname.foody.ui
+package com.griname.foody.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

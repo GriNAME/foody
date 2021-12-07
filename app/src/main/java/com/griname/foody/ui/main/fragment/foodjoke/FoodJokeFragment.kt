@@ -1,4 +1,4 @@
-package com.griname.foody.ui.fragment.foodjoke
+package com.griname.foody.ui.main.fragment.foodjoke
 
 import android.os.Bundle
 import android.view.LayoutInflater
