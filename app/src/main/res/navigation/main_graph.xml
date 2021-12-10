@@ -27,6 +27,9 @@
             android:name="backFromBottomShit"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <dialog
         android:id="@+id/recipeBottomSheet"
@@ -37,4 +40,13 @@
             android:id="@+id/action_recipeBottomSheet_to_recipesFragment"
             app:destination="@id/recipesFragment" />
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.griname.foody.ui.details.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details">
+        <argument
+            android:name="result"
+            app:argType="com.griname.foody.data.network.model.Result" />
+    </activity>
 </navigation>

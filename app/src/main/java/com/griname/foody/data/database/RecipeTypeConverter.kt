@@ -3,7 +3,7 @@ package com.griname.foody.data.database
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.griname.foody.model.FoodRecipe
+import com.griname.foody.data.network.model.FoodRecipe
 
 class RecipeTypeConverter {
 

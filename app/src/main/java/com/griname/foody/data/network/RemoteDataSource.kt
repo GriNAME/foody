@@ -1,7 +1,6 @@
-package com.griname.foody.data
+package com.griname.foody.data.network
 
-import com.griname.foody.data.network.FoodRecipeApi
-import com.griname.foody.model.FoodRecipe
+import com.griname.foody.data.network.model.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
 

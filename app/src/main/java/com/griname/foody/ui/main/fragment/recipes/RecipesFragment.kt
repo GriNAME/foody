@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.CreateMethod
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.griname.foody.R
-import com.griname.foody.adapter.RecipeAdapter
+import com.griname.foody.ui.main.fragment.recipes.adapter.RecipeAdapter
 import com.griname.foody.databinding.FragmentRecipesBinding
 import com.griname.foody.util.NetworkListener
 import com.griname.foody.util.NetworkResult

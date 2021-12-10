@@ -1,4 +1,4 @@
-package com.griname.foody.model
+package com.griname.foody.data.network.model
 
 
 import com.google.gson.annotations.SerializedName

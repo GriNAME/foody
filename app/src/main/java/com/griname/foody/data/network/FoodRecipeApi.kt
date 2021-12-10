@@ -1,6 +1,6 @@
 package com.griname.foody.data.network
 
-import com.griname.foody.model.FoodRecipe
+import com.griname.foody.data.network.model.FoodRecipe
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

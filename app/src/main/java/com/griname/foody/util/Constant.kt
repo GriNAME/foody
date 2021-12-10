@@ -3,6 +3,7 @@ package com.griname.foody.util
 class Constant {
 
     companion object {
+        // Url
         const val API_KEY = "29b507ab38284b3db4e040ae27fd7623"
         const val BASE_URL = "https://api.spoonacular.com"
 
@@ -31,5 +32,8 @@ class Constant {
         const val PREFERENCES_DIET_TYPE = "diet_type"
         const val PREFERENCES_DIET_TYPE_ID = "diet_type_id"
         const val PREFERENCES_BACK_ONLINE = "back_online"
+
+        // Keys
+        const val BUNDLE_RECIPE_ARGS = "recipe_bundle"
     }
 }

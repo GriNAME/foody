@@ -1,7 +1,7 @@
-package com.griname.foody.util
+package com.griname.foody.ui.main.fragment.recipes
 
 import androidx.recyclerview.widget.DiffUtil
-import com.griname.foody.model.Result
+import com.griname.foody.data.network.model.Result
 
 class RecipesDiffUtil(
     private val oldData: List<Result>,

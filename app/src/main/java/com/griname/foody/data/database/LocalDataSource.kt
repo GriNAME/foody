@@ -1,4 +1,4 @@
-package com.griname.foody.data
+package com.griname.foody.data.database
 
 import com.griname.foody.data.database.RecipeDao
 import com.griname.foody.data.database.RecipeEntity

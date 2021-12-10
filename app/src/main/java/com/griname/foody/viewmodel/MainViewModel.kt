@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.griname.foody.R
-import com.griname.foody.model.FoodRecipe
+import com.griname.foody.data.network.model.FoodRecipe
 import com.griname.foody.data.Repository
 import com.griname.foody.data.database.RecipeEntity
 import com.griname.foody.util.NetworkResult
