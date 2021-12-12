@@ -12,57 +12,57 @@ import coil.load
 import com.griname.foody.R
 import com.griname.foody.data.network.model.Result
 import com.griname.foody.databinding.FragmentOverviewBinding
-import com.griname.foody.util.Constant.Companion.BUNDLE_RECIPE_ARGS
+import com.griname.foody.util.Constant.Companion.BUNDLE_RECIPE_RESULT_KEY
 import org.jsoup.Jsoup
 
 class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
     private val binding by viewBinding<FragmentOverviewBinding>(CreateMethod.INFLATE)
-    private var recipeBundle: Result? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        recipeBundle = arguments?.getParcelable<Result>(BUNDLE_RECIPE_ARGS)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bundle: Result? = arguments?.getParcelable(BUNDLE_RECIPE_RESULT_KEY)
+
         binding.apply {
-            mainImage.load(recipeBundle?.image)
-            timeText.text = recipeBundle?.readyInMinutes.toString()
-            likeText.text = recipeBundle?.aggregateLikes.toString()
-            titleText.text = recipeBundle?.title
-            recipeBundle?.summary.let {
+            mainImage.load(bundle?.image)
+            timeText.text = bundle?.readyInMinutes.toString()
+            likeText.text = bundle?.aggregateLikes.toString()
+            titleText.text = bundle?.title
+            bundle?.summary.let {
                 summaryText.text = Jsoup.parse(it).text()
             }
 
-            if (recipeBundle?.vegetarian == true) {
+            if (bundle?.vegetarian == true) {
                 vegetarianImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 vegetarianText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }
 
-            if (recipeBundle?.vegan == true) {
+            if (bundle?.vegan == true) {
                 veganImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 veganText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }
 
-            if (recipeBundle?.glutenFree == true) {
+            if (bundle?.glutenFree == true) {
                 glutenFreeImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 glutenFreeText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }
 
-            if (recipeBundle?.dairyFree == true) {
+            if (bundle?.dairyFree == true) {
                 dairyFreeImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 dairyFreeText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }
 
-            if (recipeBundle?.veryHealthy == true) {
+            if (bundle?.veryHealthy == true) {
                 healthyImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 healthyText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }
 
-            if (recipeBundle?.cheap == true) {
+            if (bundle?.cheap == true) {
                 cheapImage.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
                 cheapText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             }

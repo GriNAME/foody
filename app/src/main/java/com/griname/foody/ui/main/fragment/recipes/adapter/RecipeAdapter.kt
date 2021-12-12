@@ -12,7 +12,7 @@ import com.griname.foody.R
 import com.griname.foody.databinding.RowRecipesLayoutBinding
 import com.griname.foody.data.network.model.FoodRecipe
 import com.griname.foody.data.network.model.Result
-import com.griname.foody.ui.main.fragment.recipes.RecipesDiffUtil
+import com.griname.foody.util.RecipesDiffUtil
 import com.griname.foody.ui.main.fragment.recipes.RecipesFragmentDirections
 import org.jsoup.Jsoup
 import java.lang.Exception

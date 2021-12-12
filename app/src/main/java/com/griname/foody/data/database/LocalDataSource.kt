@@ -1,7 +1,6 @@
 package com.griname.foody.data.database
 
-import com.griname.foody.data.database.RecipeDao
-import com.griname.foody.data.database.RecipeEntity
+import com.griname.foody.data.database.entity.RecipeEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

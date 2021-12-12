@@ -1,11 +1,10 @@
-package com.griname.foody.ui.main.fragment.recipes
+package com.griname.foody.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.griname.foody.data.network.model.Result
 
-class RecipesDiffUtil(
-    private val oldData: List<Result>,
-    private val newData: List<Result>
+class RecipesDiffUtil<T>(
+    private val oldData: List<T>,
+    private val newData: List<T>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldData.size
 

@@ -13,7 +13,7 @@ import com.griname.foody.databinding.ActivityDetailsBinding
 import com.griname.foody.ui.details.ingredients.IngredientsFragment
 import com.griname.foody.ui.details.instruction.InstructionFragment
 import com.griname.foody.ui.details.overview.OverviewFragment
-import com.griname.foody.util.Constant.Companion.BUNDLE_RECIPE_ARGS
+import com.griname.foody.util.Constant.Companion.BUNDLE_RECIPE_RESULT_KEY
 
 class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
 
@@ -28,8 +28,6 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-
         val fragments = ArrayList<Fragment>().apply {
             add(OverviewFragment())
             add(IngredientsFragment())
@@ -43,7 +41,7 @@ class DetailsActivity : AppCompatActivity(R.layout.activity_details) {
         }
 
         val bundle = Bundle()
-        bundle.putParcelable(BUNDLE_RECIPE_ARGS, args.result)
+        bundle.putParcelable(BUNDLE_RECIPE_RESULT_KEY, args.result)
 
         val pagerAdapter = PagerAdapter(bundle, fragments, this)
 

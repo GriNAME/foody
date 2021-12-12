@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import com.griname.foody.R
 import com.griname.foody.data.network.model.FoodRecipe
 import com.griname.foody.data.Repository
-import com.griname.foody.data.database.RecipeEntity
+import com.griname.foody.data.database.entity.RecipeEntity
 import com.griname.foody.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
