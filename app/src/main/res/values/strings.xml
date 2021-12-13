@@ -40,5 +40,6 @@
     <string name="response_is_not_found">Response is not found</string>
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
+    <string name="save_to_favorite">Save to Favorite</string>
 
 </resources>
