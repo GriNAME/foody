@@ -1,7 +1,6 @@
-package com.griname.foody.viewmodel
+package com.griname.foody.ui.main.viewmodel
 
 import android.app.Application
-import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData

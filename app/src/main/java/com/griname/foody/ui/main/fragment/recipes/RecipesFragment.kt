@@ -20,8 +20,8 @@ import com.griname.foody.databinding.FragmentRecipesBinding
 import com.griname.foody.util.NetworkListener
 import com.griname.foody.util.NetworkResult
 import com.griname.foody.util.observeOnce
-import com.griname.foody.viewmodel.MainViewModel
-import com.griname.foody.viewmodel.RecipeViewModel
+import com.griname.foody.ui.main.viewmodel.MainViewModel
+import com.griname.foody.ui.main.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

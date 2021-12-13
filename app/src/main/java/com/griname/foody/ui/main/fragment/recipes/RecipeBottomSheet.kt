@@ -15,7 +15,7 @@ import com.griname.foody.databinding.RecipeBottomSheetBinding
 import com.griname.foody.util.Constant.Companion.DEFAULT_DIET_TYPE
 import com.griname.foody.util.Constant.Companion.DEFAULT_MEAL_TYPE
 import com.griname.foody.util.Constant.Companion.DEFAULT_TYPE_ID
-import com.griname.foody.viewmodel.RecipeViewModel
+import com.griname.foody.ui.main.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 import java.util.*
