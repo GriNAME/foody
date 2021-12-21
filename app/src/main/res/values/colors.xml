@@ -22,6 +22,13 @@
     <color name="chipTextColor">@color/darkGray</color>
 
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
-
     <color name="strokeColor">@color/lightMediumGray</color>
+    <color name="cardNormalBackgroundColor">@color/white</color>
+    <color name="cardBackgroundColor">@color/colorPrimary</color>
+    <color name="cardBackgroundLightColor">#106200EA</color>
+
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/dark</color>
+<!--    <color name="cardBackgroundColor">#1A673AB7</color>-->
 </resources>
