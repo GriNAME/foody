@@ -47,4 +47,7 @@
     <string name="delete_all_recipes">Delete All Recipes</string>
     <string name="all_favorite_recipes_deleted">All favorite recipes deleted</string>
 
+    <string name="lorem_ipsum">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</string>
+    <string name="error_getting_a_joke">Error getting a joke</string>
+
 </resources>

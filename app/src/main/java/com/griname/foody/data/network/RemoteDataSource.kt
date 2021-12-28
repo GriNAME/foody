@@ -1,5 +1,6 @@
 package com.griname.foody.data.network
 
+import com.griname.foody.data.network.model.FoodJoke
 import com.griname.foody.data.network.model.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
@@ -13,4 +14,7 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun searchRecipes(queries: Map<String, String>): Response<FoodRecipe> =
         foodRecipeApi.searchRecipes(queries)
+
+    suspend fun getFoodJoke(apiKey: String): Response<FoodJoke> =
+        foodRecipeApi.getFoodJoke(apiKey)
 }
