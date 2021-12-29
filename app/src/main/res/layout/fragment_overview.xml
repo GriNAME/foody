@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".ui.details.overview.OverviewFragment"
     >
 
@@ -35,13 +36,14 @@
         android:id="@+id/time_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/main_image"
-        app:layout_constraintEnd_toEndOf="@id/gradient_overlay"
         android:layout_marginEnd="@dimen/app_margin_medium"
         android:layout_marginBottom="@dimen/app_margin_medium"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/main_image"
+        app:layout_constraintEnd_toEndOf="@id/gradient_overlay"
         >
+
         <ImageView
             android:id="@+id/time_image"
             android:layout_width="wrap_content"
@@ -64,8 +66,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_vertical"
+        android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@id/time_group"
         app:layout_constraintTop_toTopOf="@id/time_group"
         >
@@ -101,8 +103,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/app_margin_medium"
         android:fontFamily="@font/courgette"
-        android:text="Type of title"
-        android:textColor="@color/darkGray"
+        android:text="@string/type_of_title"
+        android:textColor="@color/titleColor"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +120,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toStartOf="@id/title_text"
         app:layout_constraintTop_toBottomOf="@id/title_text"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -139,7 +141,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toStartOf="@id/vegetarian_image"
         app:layout_constraintTop_toBottomOf="@id/vegetarian_image"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -161,7 +163,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toEndOf="@id/vegetarian_text"
         app:layout_constraintTop_toBottomOf="@id/title_text"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -182,7 +184,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toStartOf="@id/gluten_free_image"
         app:layout_constraintTop_toBottomOf="@id/gluten_free_image"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -204,7 +206,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toEndOf="@id/gluten_free_text"
         app:layout_constraintTop_toBottomOf="@id/title_text"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -225,7 +227,7 @@
         android:src="@drawable/ic_checkmark"
         app:layout_constraintStart_toStartOf="@id/healthy_image"
         app:layout_constraintTop_toBottomOf="@id/healthy_image"
-        app:tint="@color/darkGray"
+        app:tint="@color/itemColor"
         />
 
     <TextView
@@ -257,10 +259,10 @@
 
             <TextView
                 android:id="@+id/summary_text"
-                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:textSize="16sp"
+                tools:text="TextView"
                 />
         </LinearLayout>
     </ScrollView>

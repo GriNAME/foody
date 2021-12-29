@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/backgroundColor"
     tools:context=".ui.main.fragment.recipes.RecipeBottomSheet"
     >
 
@@ -15,7 +16,7 @@
         android:layout_marginStart="@dimen/app_margin_large"
         android:layout_marginTop="16dp"
         android:text="@string/meal_type"
-        android:textColor="@color/dark"
+        android:textColor="@color/titleColor"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +175,7 @@
         android:layout_marginStart="@dimen/app_margin_large"
         android:layout_marginTop="@dimen/app_margin_medium"
         android:text="@string/diet_type"
-        android:textColor="@color/dark"
+        android:textColor="@color/titleColor"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

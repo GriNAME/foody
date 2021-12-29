@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_food_joke_background_light"
+    android:background="@drawable/ic_food_joke_background_dark"
     tools:context=".ui.main.fragment.foodjoke.FoodJokeFragment"
     >
 
@@ -55,7 +55,7 @@
                         android:fontFamily="@font/courgette"
                         android:text="@string/lorem_ipsum"
                         android:textAlignment="center"
-                        android:textColor="@color/descriptionColor"
+                        android:textColor="@color/titleColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

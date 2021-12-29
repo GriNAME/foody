@@ -34,6 +34,7 @@
                 android:id="@+id/ingredient_background"
                 android:layout_width="120dp"
                 android:layout_height="0dp"
+                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +62,7 @@
                 android:text="Name of ingredient"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ingredient_image"
+                app:layout_constraintStart_toEndOf="@id/ingredient_background"
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
